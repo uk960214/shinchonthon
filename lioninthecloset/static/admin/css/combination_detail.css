@@ -1,0 +1,13 @@
+body {
+    text-align: center;
+}
+
+.content-area {
+    display: flex;
+    justify-content: center;
+}
+
+.preview {
+    display: flex;
+    flex-direction: column;
+}

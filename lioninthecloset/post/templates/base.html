@@ -1,0 +1,39 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-family: 'Nanum Gothic Coding', monospace;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="{% static '/admin/img/logo.png' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+        </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" style="font-weight: bold;">옷장 속 사자</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#mycloset">나의 옷 리스트</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#guide">스타일 가이드라인</a>
+          </li>
+          {% if not user.is_authenticated %}
+          <li class="nav-item">
+             <a class="nav-link" href="{% url 'login'%}">Login</a>
+          </li>
+          {% endif %}
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout'%}">Logout</a>
+          </li>
+          {% endif %}
+          {% if not user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'signup'%}">Sign up</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>

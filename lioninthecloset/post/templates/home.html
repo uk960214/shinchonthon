@@ -1,0 +1,83 @@
+{% load static %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>옷장에 옷 추가하기</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/album/">
+        <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">  
+    </head>   
+    <body style="font-family: 'Nanum Gothic Coding', monospace;">
+        
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-family: 'Nanum Gothic Coding', monospace;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="{% static '/admin/img/logo.png' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+        </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" style="font-weight: bold;">옷장 속 사자</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#mycloset">나의 옷 리스트</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#guide">스타일 가이드라인</a>
+          </li>
+          {% if not user.is_authenticated %}
+          <li class="nav-item">
+             <a class="nav-link" href="{% url 'login'%}">Login</a>
+          </li>
+          {% endif %}
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout'%}">Logout</a>
+          </li>
+          {% endif %}
+          {% if not user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'signup'%}">Sign up</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+        
+          <div style="text-align: center; margin-top: 10px;">
+            <img src="{%static '/admin/img/closet.png'%}" alt="" width="90%" height="auto" class="d-inline-block align-text-top">
+          </div>
+          <h3 id="mycloset" style="margin-top: 40px; margin-left: 70px">나의 옷 리스트</h3>
+          <div id="closet" style="text-align: center; margin-left: 70px;">
+            
+            <img src="{%static '/admin/img/outer.png'%}" class="img-thumbnail" alt="first" height="100px">
+            <img src="{%static '/admin/img/pants.png'%}" class="img-thumbnail" alt="middle" height="100px">
+            <img src="{%static '/admin/img/shoes.png'%}" class="img-thumbnail" alt="middle2" height="100px">
+            <img src="{%static '/admin/img/shirt.png'%}" class="img-thumbnail" alt="last" height="100px"> 
+            <img src="{%static '/admin/img/outer.png'%}" class="img-thumbnail" alt="middle2" height="100px">
+            <img src="{%static '/admin/img/shoes.png'%}" class="img-thumbnail" alt="last" height="100px"> 
+
+          </div>
+          <div class="d-grid col-20" id="guide" style="margin: 40px; text-align: center;">
+            <button type="button" class="btn btn-secondary btn-lg">스타일 가이드라인 보러가기</button>
+          </div>
+
+    </body>
+</html>

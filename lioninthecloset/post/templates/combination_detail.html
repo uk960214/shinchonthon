@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/admin/css/combination_detail.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    {{ combis.name }}
+    <section class="content-area">
+        <section class="preview">
+            {% for i in combis.Item.all %}
+            <img src="{{i.image.url}}">
+            {% endfor %}
+        </section>
+        
+        <section class="item_list">
+            <section class="item_list_combination">
+                {% for i in combis.Item.all %}
+                <h1>{{i.name}}</h1>
+                <h3>{{i.category}}</h3>
+                {% endfor %}
+            </section>
+            <section class="item_list_all">
+                <ul>
+                    {% for i in item_list.all %}
+                        <li>
+                            <img src="{{i.image.url}}">
+                            <p>{{i.name}}</p>
+                            <p>{{i.category}}</p>
+                            <form action="{% url 'add_combi_item' pk=i.id index=combis.id %}" method="post">
+                                {%csrf_token%}
+                                <input type="submit" value="코디에 추가하기">
+                            </form>
+                        </li>
+                    {% endfor %}
+                    </ul>
+            </section>
+        </section>
+        
+        
+    </section>
+    
+</body>
+</html>

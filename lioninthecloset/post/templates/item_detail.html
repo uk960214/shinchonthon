@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <section class="item_view">
+        <h1>{{item.name}}</h1>
+        <img src="{{item.image.url}}">
+        <br>
+
+        <ul>
+            <li>브랜드: {{item.brand}}</li>
+            <li>구매일: {{item.date}}</li>
+            <li>종류: {{item.category}}</li>
+            <li>크기: {{item.size}}</li>
+            <li>중심 색: <input type="color" name="color_main" value="{{item.color_main}}" disabled></li>
+            <li>보조 색: <input type="color" name="color_sub" value="{{item.color_sub}}" disabled></li>
+            <li> 태그: {% for t in item.tags.all %} #{{t}} {% endfor %}</li>
+
+        </ul>
+    </section>
+
+{% endblock %}

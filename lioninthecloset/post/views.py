@@ -7,7 +7,8 @@ from django.utils import timezone
 
 def closet_view(request):
     items = Item.objects.all()
-    return render(request, 'closet.html', {'items': items})
+    combis = Combination.objects.all()
+    return render(request, 'closet.html', {'items': items, 'combis': combis})
 
 def add_to_combi(request, index, pk):
     if request.method == 'POST':
@@ -62,16 +63,27 @@ def new(request):
     return render(request, 'create.html', {'form':form})
 
 def create(request):
-    form = ItemForm(request.POST, request.FILES)
-    if form.is_valid:
-        new_item = form.save(commit=False)
-        new_item.date = timezone.now()
-        new_item.save()
-        return redirect('detail', new_item.id)
-    return redirect('home')
+    if request.method == "POST":
+        form = ItemForm(request.POST, request.FILES)
+        if form.is_valid:
+            new_item = form.save(commit=False)
+            new_item.date = timezone.now()
+            new_item.save()
+            for img in request.FILES.getlist('imgs'):
+                image = Image()
+                image.post = post
+                image.file = img
+                image.save()
+            return redirect('item_detail', index = new_item.id)
+        return redirect('closet')
+    else:
+        form = ItemForm()
+        return render(request, 'create.html', {'form':form})
 
 def edit(request, id):
     re_item = Item.objects.get(id = id)
     return render(request, 'edit.html', {'item':re_item})
 
-# def item_detail(request, index):
+def item_detail(request, index):
+    item = Item.objects.get(id=index)
+    return render(request, 'item_detail.html', {'item':item})
